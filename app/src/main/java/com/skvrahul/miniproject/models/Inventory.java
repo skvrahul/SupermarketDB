@@ -3,14 +3,17 @@ package com.skvrahul.miniproject.models;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.ForeignKey;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
 /**
  * Created by skvrahul on 30/3/18.
  */
+
 @Entity
 public class Inventory{
     @PrimaryKey
-    private String itemID;
+    private int item_id;
 
     @ColumnInfo(name = "item_name")
     private String itemName;
@@ -21,12 +24,15 @@ public class Inventory{
     @ColumnInfo(name = "stock")
     private int stock;
 
-    public String getItemID() {
-        return itemID;
+    @ForeignKey(entity = Category.class,parentColumns = "cat_id",childColumns = "cat_id", onDelete = CASCADE, onUpdate = CASCADE)
+    private int cat_id;
+
+    public int getItem_id() {
+        return item_id;
     }
 
-    public void setItemID(String itemID) {
-        this.itemID = itemID;
+    public void setItem_id(int item_id) {
+        this.item_id = item_id;
     }
 
     public String getItemName() {
@@ -52,4 +58,8 @@ public class Inventory{
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+    public int getCat_id() {return cat_id;}
+
+    public void setCat_id(int cat_id) {this.cat_id = cat_id;}
 }

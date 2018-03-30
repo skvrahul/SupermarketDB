@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.skvrahul.miniproject.AppDatabase;
 import com.skvrahul.miniproject.R;
-import com.skvrahul.miniproject.models.Employee;
+import com.skvrahul.miniproject.models.*;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             Employee e4 = new Employee("Tina", 464739);
             Employee e5 = new Employee("Jack", 464736);
             db.employeeDAO().insertAll(e1, e2, e3, e4, e5);
+
         }catch(Exception e){
             Log.i(TAG, "addDummyData: Already added data.Skipping....");
 

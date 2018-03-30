@@ -34,6 +34,12 @@ public class Employee {
         this.e_id  = emp_id;
 
     }
+    public Employee(String name, int emp_id, String startDate, double salary){
+        this.empName = name;
+        this.e_id  = emp_id;
+        this.startDate = startDate;
+        this.salary = salary;
+    }
     public int getE_id() {
         return e_id;
     }
