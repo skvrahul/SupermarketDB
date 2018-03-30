@@ -1,4 +1,4 @@
-package com.skvrahul.miniproject;
+package com.skvrahul.miniproject.models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

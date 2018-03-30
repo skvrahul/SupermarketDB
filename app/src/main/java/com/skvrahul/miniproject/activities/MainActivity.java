@@ -1,6 +1,5 @@
-package com.skvrahul.miniproject;
+package com.skvrahul.miniproject.activities;
 
-import android.appwidget.AppWidgetManager;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.skvrahul.miniproject.AppDatabase;
+import com.skvrahul.miniproject.R;
+import com.skvrahul.miniproject.models.Employee;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
@@ -50,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
             int eID = Integer.parseInt(empID.getText().toString());
             Employee emp = db.employeeDAO().getEmployee(eID).get(0);
             Toast.makeText(this, "Welcome "+emp.getEmpName(),Toast.LENGTH_LONG).show();
+            String ename = emp.getEmpName();
+            Intent i = new Intent(this, AddItemsActivity.class);
+            i.putExtra("name", ename);
+            startActivity(i);
+
             //TODO: Launch the checkout Screen here
         }catch (Exception e){
             e.printStackTrace();
