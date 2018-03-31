@@ -25,4 +25,7 @@ public interface InventoryDAO {
     @Query("SELECT * FROM inventory where item_id = :itemId")
     List<Inventory> getInventory(String itemId);
 
+    @Query("delete from inventory where item_id=:itemid")
+    void delEmployee(int itemid);
+
 }

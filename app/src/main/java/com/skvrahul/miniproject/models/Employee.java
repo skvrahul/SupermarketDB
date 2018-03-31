@@ -27,13 +27,16 @@ public class Employee {
 
     }
     public Employee(String name){
+
         this.empName = name;
     }
-    public Employee(String name, int emp_id){
+
+    public Employee(String name, int emp_id) {
         this.empName = name;
-        this.e_id  = emp_id;
+        this.e_id = emp_id;
 
     }
+
     public Employee(String name, int emp_id, String startDate, double salary){
         this.empName = name;
         this.e_id  = emp_id;

@@ -3,6 +3,7 @@ package com.skvrahul.miniproject.DAO;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch .persistence.room.Delete;
 
 import com.skvrahul.miniproject.models.Employee;
 
@@ -24,5 +25,10 @@ public interface EmployeeDAO {
 
     @Query("SELECT * FROM employee where e_id = :eid")
     List<Employee> getEmployee(int eid);
+
+    @Query("delete from employee where e_id=:eid")
+    void delEmployee(int eid);
+
+
 
 }
