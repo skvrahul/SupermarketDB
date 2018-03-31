@@ -11,6 +11,11 @@ public class CartItem {
     private Inventory item;
     private int qty;
 
+    public CartItem(){}
+    public CartItem(Inventory item){
+        this.item = item;
+        this.qty = 1;
+    }
     public Inventory getItem() {
         return item;
     }
@@ -26,5 +31,14 @@ public class CartItem {
     public void setQty(int qty) {
         this.qty = qty;
     }
+
+    public void incrementQty(){
+        this.qty += 1;
+    }
+    public void incrementQty(int n){
+        this.qty += n;
+
+    }
+
 }
 

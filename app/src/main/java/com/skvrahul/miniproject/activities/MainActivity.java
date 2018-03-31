@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my-db").allowMainThreadQueries().build();
         empID = findViewById(R.id.emp_id_et);
+        empID.setText("12212");
         addDummyData();
     }
     public void addDummyData(){
@@ -31,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         try {
+            //Inserting dummy items into inventory
+            Inventory i1 = new Inventory();
+            i1.setItem_id("127");
+            i1.setCat_id(232);
+            i1.setItemName("Mango");
+            i1.setStock(4);
+            i1.setPrice(43.467);
+            db.inventoryDAO().insertAll(i1);
+
             //Inserting a few Dummy employees
             Employee e1 = new Employee("Ram", 12212);
             Employee e2 = new Employee("Joseph", 17665);

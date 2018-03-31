@@ -23,6 +23,6 @@ public interface InventoryDAO {
     List<Inventory> getAllInventories();
 
     @Query("SELECT * FROM inventory where item_id = :itemId")
-    List<Inventory> getInventory(int itemId);
+    List<Inventory> getInventory(String itemId);
 
 }

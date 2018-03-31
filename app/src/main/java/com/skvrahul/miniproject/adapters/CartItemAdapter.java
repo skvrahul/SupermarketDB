@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyViewHolder> {
     public interface DeleteClickListener{
-        void onClick();
+        void onClick(CartItem item);
     }
     private List<CartItem> cartItems;
     private DeleteClickListener deleteClickListener;
@@ -34,6 +34,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
             name = (TextView) view.findViewById(R.id.cart_item_name);
             units = (TextView) view.findViewById(R.id.cart_item_units);
             price = (TextView) view.findViewById(R.id.cart_item_price);
+            delete = view.findViewById(R.id.cart_item_delete);
+
         }
     }
 
@@ -57,15 +59,15 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        CartItem item = cartItems.get(position);
+        final CartItem item = cartItems.get(position);
         holder.name.setText(item.getItem().getItemName());
-        holder.units.setText(item.getQty());
+        holder.units.setText(item.getQty()+"");
         holder.price.setText(item.getItem().getPrice()+"x"+item.getQty()+"="+(item.getQty()*item.getItem().getPrice()));
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(deleteClickListener!=null){
-                    deleteClickListener.onClick();
+                    deleteClickListener.onClick(item);
                 }
             }
         });
