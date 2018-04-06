@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skvrahul.miniproject">
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +20,9 @@
         <activity android:name=".activities.AddItemsActivity" />
         <activity android:name=".activities.AddOrDelEmployees" />
         <activity android:name=".activities.AddEmployeeActivity" />
-        <activity android:name=".activities.RemoveEmployeeActivity"></activity>
+        <activity android:name=".activities.RemoveEmployeeActivity" />
+        <activity android:name=".activities.BillActivity" />
+        <activity android:name=".activities.ScanCodeActivity"></activity>
     </application>
 
 </manifest>

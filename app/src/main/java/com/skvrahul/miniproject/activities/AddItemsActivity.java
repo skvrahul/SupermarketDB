@@ -1,6 +1,7 @@
 package com.skvrahul.miniproject.activities;
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -27,9 +28,11 @@ public class AddItemsActivity extends AppCompatActivity {
     EditText prodID;
     RecyclerView cartRV;
     CartItemAdapter adapter;
-    List<CartItem> cartItems = new ArrayList<>();
+    ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
     private AppDatabase db;
     private String TAG = "AddItemsActivity";
+    private int REQUEST_CODE = 44353;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,9 @@ public class AddItemsActivity extends AppCompatActivity {
     public void addProductClicked(View view){
         //Add Product clicked
         //TODO: Launch a dialog asking qty to be added to the cart
+        addItem();
+    }
+    public void addItem(){
         if(db == null){
             return;
         }
@@ -115,5 +121,24 @@ public class AddItemsActivity extends AppCompatActivity {
             Toast.makeText(this, "Please check your product id!", Toast.LENGTH_LONG).show();
         }
     }
-
+    public void submitClicked(View view){
+        if(cartItems==null){
+            return;
+        }
+        Intent i = new Intent(this, BillActivity.class);
+        i.putExtra("cartItems", cartItems);
+        startActivity(i);
+    }
+    public void scanBarcodeClicked(View view){
+        Intent intent = new Intent(AddItemsActivity.this, ScanCodeActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && data != null && requestCode == REQUEST_CODE){
+            String id = data.getStringExtra("product_id");
+            prodID.setText(id);
+            addItem();
+        }
+    }
 }

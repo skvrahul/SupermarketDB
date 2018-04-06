@@ -35,11 +35,27 @@ public class MainActivity extends AppCompatActivity {
             //Inserting dummy items into inventory
             Inventory i1 = new Inventory();
             i1.setItem_id("127");
-            i1.setCat_id(232);
+            i1.setCat_id(44);
             i1.setItemName("Mango");
             i1.setStock(4);
-            i1.setPrice(43.467);
-            db.inventoryDAO().insertAll(i1);
+            i1.setPrice(43.4);
+
+
+            Inventory i2 = new Inventory();
+            i2.setItem_id("126");
+            i2.setCat_id(44);
+            i2.setItemName("Avacado");
+            i2.setStock(12);
+            i2.setPrice(158.3);
+            //72527273070
+            Inventory i3 = new Inventory();
+            i3.setItem_id("72527273070");
+            i3.setCat_id(41);
+            i3.setItemName("Lays Chips");
+            i3.setStock(123);
+            i3.setPrice(10);
+            db.inventoryDAO().insertAll(i1,i2, i3);
+
 
             //Inserting a few Dummy employees
             Employee e1 = new Employee("Ram", 12212);

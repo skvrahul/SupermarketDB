@@ -6,13 +6,15 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.ForeignKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 /**
  * Created by skvrahul on 30/3/18.
  */
 
 @Entity
-public class Inventory{
+public class Inventory implements Serializable{
     @PrimaryKey
     @NonNull
     private String item_id;

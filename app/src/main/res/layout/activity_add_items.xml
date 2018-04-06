@@ -23,18 +23,28 @@
 
         <EditText
             android:id="@+id/add_items_pid_et"
-            android:layout_weight="0.8"
+            android:layout_weight="0.5"
             android:hint="Enter Product ID here"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
+
             android:onClick="addProductClicked"
-            android:layout_weight="0.2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+"
-            android:textSize="30dp"/>
+            android:layout_marginHorizontal="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ic_add"
+            android:clickable="true"
+            />
+        <Button
+            android:onClick="scanBarcodeClicked"
+            android:layout_marginHorizontal="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ic_camera"
+            android:clickable="true"
+            />
 
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
@@ -43,4 +53,10 @@
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
+    <Button
+        android:onClick="submitClicked"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
 </LinearLayout>
