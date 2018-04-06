@@ -1,7 +1,6 @@
 package com.skvrahul.miniproject.activities;
 
 import android.arch.persistence.room.Room;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 
 import com.skvrahul.miniproject.AppDatabase;
 import com.skvrahul.miniproject.R;
-import com.skvrahul.miniproject.models.*;
 
 public class RemoveEmployeeActivity extends AppCompatActivity {
     AppDatabase db;
@@ -22,12 +20,12 @@ public class RemoveEmployeeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove_employee);
-        delEmployeeButton = findViewById(R.id.rem_employee_btn);
+        delEmployeeButton = findViewById(R.id.e_del_btn);
         eId = findViewById(R.id.e_id_txt);
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my-db").allowMainThreadQueries().build();
         delEmployeeButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
+            public void onClick(View v) {
 
 
                 if (eId == null || db == null) {

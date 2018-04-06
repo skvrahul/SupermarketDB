@@ -20,14 +20,22 @@ public interface EmployeeDAO {
     @Insert
     void insertAll(Employee...employees);
 
+    @Query("select max(e_id) from employee")
+    int getLastId();
+
     @Query("SELECT * FROM employee")
     List<Employee> getAllEmployees();
 
     @Query("SELECT * FROM employee where e_id = :eid")
-    List<Employee> getEmployee(int eid);
+    Employee getEmployee(int eid);
 
     @Query("delete from employee where e_id=:eid")
     void delEmployee(int eid);
+
+    @Query("select count(*) from employee")
+    int getEmployeeCount();
+
+
 
 
 

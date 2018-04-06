@@ -4,13 +4,14 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by skvrahul on 30/3/18.
  */
 @Entity
-public class Employee {
+public class Employee implements Serializable{
     @PrimaryKey
     private int e_id;
 
@@ -43,6 +44,15 @@ public class Employee {
         this.startDate = startDate;
         this.salary = salary;
     }
+    /*
+    public Employee(String name, String startDate, double salary){
+
+        this.empName = name;
+        this.e_id  = emp_id;
+        this.startDate = startDate;
+        this.salary = salary;
+    }
+    */
     public int getE_id() {
         return e_id;
     }

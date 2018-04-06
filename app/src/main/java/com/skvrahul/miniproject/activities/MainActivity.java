@@ -78,11 +78,13 @@ public class MainActivity extends AppCompatActivity {
         }
         try{
             int eID = Integer.parseInt(empID.getText().toString());
-            Employee emp = db.employeeDAO().getEmployee(eID).get(0);
+            Employee emp = db.employeeDAO().getEmployee(eID);
             Toast.makeText(this, "Welcome "+emp.getEmpName(),Toast.LENGTH_LONG).show();
             String ename = emp.getEmpName();
-            Intent i = new Intent(this, AddItemsActivity.class);
-            i.putExtra("name", ename);
+            Intent i = new Intent(this, LoggedInActivity.class);
+
+            //Intent i = new Intent(this, AddItemsActivity.class);
+            //i.putExtra("name", ename);
             startActivity(i);
 
             //TODO: Launch the checkout Screen here

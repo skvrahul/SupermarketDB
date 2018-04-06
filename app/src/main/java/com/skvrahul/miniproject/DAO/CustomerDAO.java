@@ -19,6 +19,9 @@ public interface CustomerDAO {
     @Insert
     void insertAll(Customer... customer);
 
+    @Query("select max(c_id) from customer")
+    int getLastId();
+
     @Query("SELECT * FROM customer")
     List<Customer> getAllCustomers();
 
