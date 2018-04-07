@@ -31,8 +31,14 @@ public class Customer {
 
     }
 
+    public Customer(String name,int c_id,String phoneNum) {
+        this.custName = name;
+        this.c_id = c_id;
+        this.phoneNum = phoneNum;
+    }
+
     public int getC_id() {
-            return c_id;
+        return c_id;
     }
 
     public void setC_id(int c_id) {
@@ -52,7 +58,7 @@ public class Customer {
     }
 
     public void setCustName(String custName) {
-            this.custName = custName;
+        this.custName = custName;
     }
 
 

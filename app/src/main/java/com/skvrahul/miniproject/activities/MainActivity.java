@@ -58,12 +58,25 @@ public class MainActivity extends AppCompatActivity {
 
 
             //Inserting a few Dummy employees
-            Employee e1 = new Employee("Ram", 12212);
-            Employee e2 = new Employee("Joseph", 17665);
-            Employee e3 = new Employee("Lucy", 377328);
-            Employee e4 = new Employee("Tina", 464739);
-            Employee e5 = new Employee("Jack", 464736);
-            db.employeeDAO().insertAll(e1, e2, e3, e4, e5);
+            Employee e1 = new Employee("Ram", 12212, "9481754291",300000.0);
+            Employee e2 = new Employee("Joseph", 17665, "9481754299",310000.0);
+            Employee e3 = new Employee("Lucy", 377328, "9716851750",350000.0);
+            Employee e4 = new Employee("Tina", 464739, "9769832913",400000.0);
+            Employee e5 = new Employee("Jack", 464736, "9187399549",410000.0);
+            Employee e6 = new Employee("Harvey", 232314, "9505935194",250000);
+            Employee e7 = new Employee("Tom", 343423, "9034994396",320000);
+            Employee e8 = new Employee("Rita",234578, "9034994396",210000);
+            db.employeeDAO().insertAll(e1, e2, e3, e4, e5, e6, e7, e8);
+
+            Customer c1 = new Customer("Richard", 123001, "9164776488");
+            Customer c2 = new Customer("John",143312, "9723517978");
+            Customer c3 = new Customer("Rohit",1141003, "9466210144");
+            Customer c4 = new Customer("Mark", 232814, "9955950818");
+            Customer c5 = new Customer("Tony",223465, "9842006400");
+            Customer c6 = new Customer("Riya",445676, "9476561035");
+            Customer c7 = new Customer("Reeti",876547, "9223478531");
+            Customer c8 = new Customer("Tax",832178, "9449383997");
+            db.customerDAO().insertAll(c1,c2,c3,c4,c5,c6,c7,c8);
 
         }catch(Exception e){
             Log.i(TAG, "addDummyData: Already added data.Skipping....");

@@ -11,7 +11,7 @@ import java.sql.Date;
  * Created by skvrahul on 30/3/18.
  */
 @Entity
-public class Employee implements Serializable{
+public class Employee implements Serializable {
     @PrimaryKey
     private int e_id;
 
@@ -24,10 +24,11 @@ public class Employee implements Serializable{
     @ColumnInfo(name = "salary")
     private double salary;
 
-    public Employee(){
+    public Employee() {
 
     }
-    public Employee(String name){
+
+    public Employee(String name) {
 
         this.empName = name;
     }
@@ -38,15 +39,28 @@ public class Employee implements Serializable{
 
     }
 
-    public Employee(String name, int emp_id, String startDate, double salary){
-        this.empName = name;
-        this.e_id  = emp_id;
-        this.startDate = startDate;
+    public Employee(String empName,int e_id,String phoneNum) {
+        this.empName = empName;
+        this.e_id = e_id;
+        this.phoneNum = phoneNum;
+    }
+
+    public Employee(String empName, int e_id, String phoneNum, double salary){
+        this.empName = empName;
+        this.e_id = e_id;
+        this.phoneNum = phoneNum;
         this.salary = salary;
     }
+
+    /*public Employee(String name, int emp_id, String startDate, double salary) {
+        this.empName = name;
+        this.e_id = emp_id;
+        this.startDate = startDate;
+        this.salary = salary;
+    }*
+
     /*
     public Employee(String name, String startDate, double salary){
-
         this.empName = name;
         this.e_id  = emp_id;
         this.startDate = startDate;
