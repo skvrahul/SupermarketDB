@@ -30,6 +30,12 @@ public class Customer {
         this.c_id  = c_id;
 
     }
+    public Customer(String name, int c_id, String phoneNum)
+    {
+        this.c_id=c_id;
+        this.custName=name;
+        this.phoneNum = phoneNum;
+    }
 
     public int getC_id() {
             return c_id;

@@ -45,6 +45,8 @@ public class CustomerManagementActivity extends AppCompatActivity {
         viewCustomerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(CustomerManagementActivity.this,viewListOfCustomersActivity.class);
+                startActivity(i);
 
             }
         });

@@ -30,7 +30,16 @@ public class Inventory implements Serializable{
 
     @ForeignKey(entity = Category.class,parentColumns = "cat_id",childColumns = "cat_id", onDelete = CASCADE, onUpdate = CASCADE)
     private int cat_id;
-
+    public Inventory(){}
+    public Inventory(String item_id,String itemName,double itemCost, int itemQty,int cat_id)
+    {
+        this.item_id=item_id;
+        this.cat_id= cat_id;
+        this.itemName = itemName;
+        this.price = itemCost;
+        this.stock = itemQty;
+        this.cat_id = cat_id;
+    }
     public String getItem_id() {
         return item_id;
     }

@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
             Employee e4 = new Employee("Tina", 464739);
             Employee e5 = new Employee("Jack", 464736);
             db.employeeDAO().insertAll(e1, e2, e3, e4, e5);
+            Customer c1 = new Customer("John",1 ,"8008882650");
+            Customer c2 = new Customer("Konrad",2,"1234567890");
+            db.customerDAO().insertAll(c1,c2);
 
         }catch(Exception e){
             Log.i(TAG, "addDummyData: Already added data.Skipping....");

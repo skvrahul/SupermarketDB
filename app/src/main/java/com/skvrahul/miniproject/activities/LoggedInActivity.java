@@ -54,5 +54,12 @@ public class LoggedInActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        inventoryManagementButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoggedInActivity.this,InventoryManagementActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
