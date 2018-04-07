@@ -24,9 +24,14 @@
         <activity android:name=".activities.BillActivity" />
         <activity android:name=".activities.ScanCodeActivity" />
         <activity android:name=".activities.viewListOfEmployees" />
-        <activity android:name=".activities.CustomerManagementActivity"/>
-        <activity android:name=".activities.AddCustomerActivity"/>
-        <activity android:name=".activities.RemoveCustomerActivity"/>
+        <activity android:name=".activities.CustomerManagementActivity" />
+        <activity android:name=".activities.AddCustomerActivity" />
+        <activity android:name=".activities.RemoveCustomerActivity" />
+        <activity android:name=".activities.viewListOfCustomersActivity" />
+        <activity android:name=".adapters.CustomerAdapter" />
+        <activity android:name=".activities.InventoryManagementActivity" />
+        <activity android:name=".activities.RegisterItemActivity" />
+        <activity android:name=".activities.RemoveItemActivity"></activity>
     </application>
 
 </manifest>
