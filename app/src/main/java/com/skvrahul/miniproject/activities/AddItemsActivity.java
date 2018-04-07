@@ -43,7 +43,7 @@ public class AddItemsActivity extends AppCompatActivity {
         prodID = findViewById(R.id.add_items_pid_et);
         String name = getIntent().getStringExtra("name");
         empName.setText("Logged in as ");
-        empName.append(name);
+//        empName.append(name);
         cartRV = findViewById(R.id.add_items_rv);
         CartItemAdapter.DeleteClickListener deleteClickListener = new CartItemAdapter.DeleteClickListener() {
             @Override

@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+    private void addTrigger(){
+        String triggerQuery = "CREATE TRIGGER  IF NOT EXISTS inventory_update_trigger INSERT ON Invoice\n" +
+                "BEGIN \n" +
+                "    UPDATE TABLE inventory SET stock = stock - :new.\n" +
+                "END";
+    }
     public void customerLoginClicked(View view){
         //'Customer Login' Button Clicked
         //Handle the button click below

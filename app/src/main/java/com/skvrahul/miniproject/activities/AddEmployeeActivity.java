@@ -44,6 +44,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
                 try {
 
                     Employee e = new Employee(name.getText().toString(), Integer.parseInt(eId.getText().toString()));
+                    e.setPhoneNum(phoneNumber.getText().toString());
+                    e.setSalary(Double.parseDouble(salary.getText().toString()));
                     db.employeeDAO().insert(e);
                     Toast.makeText(getApplicationContext(), "Employee " + name.getText().toString() + "has been successfully added", Toast.LENGTH_LONG).show();
                 } catch (Exception e) {

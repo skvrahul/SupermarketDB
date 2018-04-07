@@ -30,7 +30,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView id, name,phoneNumber,startDate, salary;
-        //public ImageView delete, productImage;
 
 
         public MyViewHolder(View view) {
@@ -67,21 +66,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Employee e = Employees.get(position);
         holder.name.setText(e.getEmpName());
-        holder.id.setText(e.getE_id());
+        holder.id.setText(e.getE_id()+"");
         holder.phoneNumber.setText(e.getPhoneNum());
         holder.salary.setText(e.getSalary()+"");
         Log.d(TAG, "onBindViewHolder: called");
-        /*
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(deleteClickListener!=null){
-                    deleteClickListener.onClick(item);
-                }
-            }
-        });
-        */
-
     }
 
 

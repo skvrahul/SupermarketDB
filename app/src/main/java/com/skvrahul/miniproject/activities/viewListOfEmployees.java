@@ -29,41 +29,31 @@ public class viewListOfEmployees extends AppCompatActivity {
     ArrayList<Employee> employees = new ArrayList<Employee>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        listEmployeesButton = (Button) findViewById(R.id.list_refresh_btn);
-        Log.i(TAG,"working uptil here");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_list_of_employees);
+
+        //Loading Views
+        listEmployeesButton = (Button) findViewById(R.id.list_refresh_btn);
+        employeeRV = findViewById(R.id.e_RV);
+
+        //Fetching the DB
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my-db").allowMainThreadQueries().build();
         final EmployeeDAO eDAO = db.employeeDAO();
-        employeeRV = findViewById(R.id.e_RV);
+        employees = (ArrayList<Employee>) eDAO.getAllEmployees();
+
+        //Setting the Adapter
         adapter = new EmployeeAdapter(employees);
         employeeRV.setAdapter(adapter);
         employeeRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         employeeRV.setItemAnimator(new DefaultItemAnimator());
 
-
-        Log.d(TAG, "onCreate: "+eDAO.getEmployeeCount());
-        try {
-
-            employees = (ArrayList<Employee>) eDAO.getAllEmployees();
-            Log.d(TAG, "onCreate: "+employees);
-            adapter.notifyDataSetChanged();
-
-
-        }
-        catch (Exception e)
-        {
-
-        }
-        if(listEmployeesButton ==null) {
-            Log.d(TAG, "onCreate: null");
-            listEmployeesButton= findViewById(R.id.list_refresh_btn);
-        }
+        //'Refresh' OnClick
         listEmployeesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                employees = (ArrayList<Employee>) eDAO.getAllEmployees();
+                employees.clear();
+                employees.addAll(eDAO.getAllEmployees());
                 adapter.notifyDataSetChanged();
             }
         });
