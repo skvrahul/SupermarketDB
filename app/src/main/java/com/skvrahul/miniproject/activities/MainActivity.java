@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
 
             //Inserting a few Dummy employees
-<<<<<<< HEAD
             Employee e1 = new Employee("Ram", 12212, "9481754291",300000.0);
             Employee e2 = new Employee("Joseph", 17665, "9481754299",310000.0);
             Employee e3 = new Employee("Lucy", 377328, "9716851750",350000.0);
@@ -78,17 +77,6 @@ public class MainActivity extends AppCompatActivity {
             Customer c7 = new Customer("Reeti",876547, "9223478531");
             Customer c8 = new Customer("Tax",832178, "9449383997");
             db.customerDAO().insertAll(c1,c2,c3,c4,c5,c6,c7,c8);
-=======
-            Employee e1 = new Employee("Ram", 12212);
-            Employee e2 = new Employee("Joseph", 17665);
-            Employee e3 = new Employee("Lucy", 377328);
-            Employee e4 = new Employee("Tina", 464739);
-            Employee e5 = new Employee("Jack", 464736);
-            db.employeeDAO().insertAll(e1, e2, e3, e4, e5);
-            Customer c1 = new Customer("John",1 ,"8008882650");
-            Customer c2 = new Customer("Konrad",2,"1234567890");
-            db.customerDAO().insertAll(c1,c2);
->>>>>>> 3a2877800895129b48ddb4d437a7f08362f2f8bc
 
         }catch(Exception e){
             Log.i(TAG, "addDummyData: Already added data.Skipping....");
