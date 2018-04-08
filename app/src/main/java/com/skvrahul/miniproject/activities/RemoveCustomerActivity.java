@@ -21,7 +21,7 @@ public class RemoveCustomerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove_customer);
 
-        cId = findViewById(R.id.e_id_txt);
+        cId = findViewById(R.id.c_id_txt);
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my-db").allowMainThreadQueries().build();
         delCustomerButton = findViewById(R.id.c_del_btn);

@@ -37,11 +37,6 @@ public class Customer {
         this.phoneNum = phoneNum;
     }
 
-    public Customer(String name,int c_id,String phoneNum) {
-        this.custName = name;
-        this.c_id = c_id;
-        this.phoneNum = phoneNum;
-    }
 
     public int getC_id() {
         return c_id;

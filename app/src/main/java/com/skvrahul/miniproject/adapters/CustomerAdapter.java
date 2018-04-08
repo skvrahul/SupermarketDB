@@ -70,6 +70,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
         final Customer e = Customers.get(position);
         holder.name.setText(e.getCustName());
         holder.id.setText(e.getC_id()+"");
+        Log.i(TAG, "onBindViewHolder: Phone Number ="+e.getPhoneNum());
         holder.phoneNumber.setText(e.getPhoneNum());
         Log.d(TAG, "onBindViewHolder: called");
     }

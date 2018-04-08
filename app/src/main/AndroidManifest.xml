@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skvrahul.miniproject">
-
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,7 +28,6 @@
         <activity android:name=".activities.AddCustomerActivity" />
         <activity android:name=".activities.RemoveCustomerActivity" />
         <activity android:name=".activities.viewListOfCustomersActivity" />
-        <activity android:name=".adapters.CustomerAdapter" />
         <activity android:name=".activities.InventoryManagementActivity" />
         <activity android:name=".activities.RegisterItemActivity" />
         <activity android:name=".activities.RemoveItemActivity"></activity>

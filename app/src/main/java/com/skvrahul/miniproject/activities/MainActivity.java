@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         empID = findViewById(R.id.emp_id_et);
         empID.setText("12212");
         addDummyData();
+        addTrigger();
     }
     public void addDummyData(){
         if(db==null){
@@ -84,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void addTrigger(){
-        String triggerQuery = "CREATE TRIGGER  IF NOT EXISTS inventory_update_trigger INSERT ON Invoice\n" +
+        String triggerQuery = "CREATE TRIGGER  IF NOT EXISTS inventory_update_trigger INSERT ON contains\n" +
                 "BEGIN \n" +
-                "    UPDATE TABLE inventory SET stock = stock - :new.\n" +
+                "   UPDATE inventory SET stock = stock - NEW.quantity WHERE item_id=NEW.item_id;"+
                 "END";
+        db.execQuery(triggerQuery);
+
     }
     public void customerLoginClicked(View view){
         //'Customer Login' Button Clicked

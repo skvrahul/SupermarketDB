@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -41,7 +42,7 @@ public class viewListOfCustomersActivity extends AppCompatActivity {
                 AppDatabase.class, "my-db").allowMainThreadQueries().build();
         final CustomerDAO cDAO = db.customerDAO();
         customers = (ArrayList<Customer>) cDAO.getAllCustomers();
-
+        Log.i(TAG, "onCreate: "+customers.size());
         //Setting the Adapter
         adapter = new CustomerAdapter(customers);
         customerRV.setAdapter(adapter);
