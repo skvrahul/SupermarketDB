@@ -26,7 +26,9 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         })
 
 public class Contains {
+    @ColumnInfo(name="invoice_id")
     private int invoice_id;
+    @ColumnInfo(name="item_id")
     private int item_id;
 
     @ColumnInfo(name="quantity")

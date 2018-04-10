@@ -21,11 +21,20 @@
         android:hint="Enter Employee ID...."
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/emp_pass_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Password"
+        android:inputType="textPassword" />
+
     <Button
-        android:layout_gravity="center"
-        android:text="Login"
-        android:onClick="customerLoginClicked"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="customerLoginClicked"
+        android:text="Login" />
 
 </LinearLayout>

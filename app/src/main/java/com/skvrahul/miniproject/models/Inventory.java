@@ -13,7 +13,10 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
  * Created by skvrahul on 30/3/18.
  */
 
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity = Category.class,
+        parentColumns = "cat_id",
+        childColumns = "cat_id",
+        onDelete = ForeignKey.CASCADE))
 public class Inventory implements Serializable{
     @PrimaryKey
     @NonNull
@@ -28,7 +31,8 @@ public class Inventory implements Serializable{
     @ColumnInfo(name = "stock")
     private int stock;
 
-    @ForeignKey(entity = Category.class,parentColumns = "cat_id",childColumns = "cat_id", onDelete = CASCADE, onUpdate = CASCADE)
+    //@ForeignKey(entity = Category.class,parentColumns = "cat_id",childColumns = "cat_id", onDelete = CASCADE, onUpdate = CASCADE)
+    @ColumnInfo(name="cat_id")
     private int cat_id;
     public Inventory(){}
     public Inventory(String item_id,String itemName,double itemCost, int itemQty,int cat_id)

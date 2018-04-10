@@ -13,6 +13,7 @@ public class LoggedInActivity extends AppCompatActivity {
     Button employeeManagementButton;
     Button customerManagementButton;
     Button inventoryManagementButton;
+    Button categoryManagementButton;
     Button billingButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class LoggedInActivity extends AppCompatActivity {
         employeeManagementButton = findViewById(R.id.employeemgt_btn);
         customerManagementButton = findViewById(R.id.customermgt_btn);
         inventoryManagementButton = findViewById(R.id.inventorymgt_btn);
+        categoryManagementButton = findViewById(R.id.categorymgt_btn);
         billingButton = findViewById(R.id.billing_btn);
         /*
         employeeManagementButton.setOnClickListener(new OnClickListener() {
@@ -58,6 +60,13 @@ public class LoggedInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(LoggedInActivity.this,InventoryManagementActivity.class);
+                startActivity(i);
+            }
+        });
+        categoryManagementButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoggedInActivity.this,CategoryManagementActivity.class);
                 startActivity(i);
             }
         });

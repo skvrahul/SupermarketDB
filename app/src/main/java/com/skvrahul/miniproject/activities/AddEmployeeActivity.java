@@ -20,6 +20,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
     private EditText phoneNumber;
     private EditText eId;
     private Button addEmployeeButton;
+    private EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.e_ph_txt);
         addEmployeeButton = findViewById(R.id.e_addemp_btn);
         DateOfEmployment = findViewById(R.id.e_date_txt);
+        password = findViewById(R.id.e_pass_txt);
 
 
         addEmployeeButton.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +48,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
                     Employee e = new Employee(name.getText().toString(), Integer.parseInt(eId.getText().toString()));
                     e.setPhoneNum(phoneNumber.getText().toString());
                     e.setSalary(Double.parseDouble(salary.getText().toString()));
+                    e.setStartDate(DateOfEmployment.getText().toString());
+                    e.setPassword(password.getText().toString());
                     db.employeeDAO().insert(e);
                     Toast.makeText(getApplicationContext(), "Employee " + name.getText().toString() + "has been successfully added", Toast.LENGTH_LONG).show();
                 } catch (Exception e) {

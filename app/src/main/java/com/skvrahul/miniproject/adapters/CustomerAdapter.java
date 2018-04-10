@@ -41,8 +41,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
             id = view.findViewById(R.id.c_id_view);
             name = view.findViewById(R.id.c_name_view);
             phoneNumber = view.findViewById(R.id.c_phone_view);
-            //startDate = view.findViewById(R.id.e_da)
-            //delete = view.findViewById(R.id.cart_item_delete);
+
 
         }
     }
@@ -59,10 +58,10 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View employeeView = LayoutInflater.from(parent.getContext())
+        View customerView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.activity_customer_view, parent, false);
 
-        return new MyViewHolder(employeeView);
+        return new MyViewHolder(customerView);
     }
 
     @Override

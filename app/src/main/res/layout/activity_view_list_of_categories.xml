@@ -12,12 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="List of Employees"
+        android:text="List of Categories"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/list_refresh_btn"
+        android:id="@+id/cat_list_refresh_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Refresh"
@@ -25,7 +25,7 @@
         android:layout_marginRight="16dp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/e_RV"
+        android:id="@+id/cat_RV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

@@ -24,6 +24,11 @@ public class Employee implements Serializable {
     @ColumnInfo(name = "salary")
     private double salary;
 
+    @ColumnInfo(name="password")
+    private String password="admin";
+
+
+
     public Employee() {
 
     }
@@ -50,6 +55,7 @@ public class Employee implements Serializable {
         this.e_id = e_id;
         this.phoneNum = phoneNum;
         this.salary = salary;
+        this.password="admin";
     }
 
     /*public Employee(String name, int emp_id, String startDate, double salary) {
@@ -67,6 +73,14 @@ public class Employee implements Serializable {
         this.salary = salary;
     }
     */
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getE_id() {
         return e_id;
     }

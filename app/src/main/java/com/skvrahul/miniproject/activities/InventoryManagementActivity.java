@@ -40,8 +40,8 @@ public class InventoryManagementActivity extends AppCompatActivity {
         viewItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent i = new Intent(InventoryManagementActivity.this,.class);
-                //startActivity(i);
+                Intent i = new Intent(InventoryManagementActivity.this,ViewListOfItems.class);
+                startActivity(i);
             }
         });
     }

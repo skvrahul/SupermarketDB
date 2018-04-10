@@ -13,9 +13,12 @@ import com.skvrahul.miniproject.AppDatabase;
 import com.skvrahul.miniproject.R;
 import com.skvrahul.miniproject.models.*;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private EditText empID;
+    private EditText empPass;
     AppDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "my-db").allowMainThreadQueries().build();
         empID = findViewById(R.id.emp_id_et);
+        empPass = findViewById(R.id.emp_pass_et);
         empID.setText("12212");
+        empPass.setText("admin");
         addDummyData();
         addTrigger();
     }
@@ -33,10 +38,17 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         try {
+
+            //Inserting dummy categories into Category
+            Category cat1 = new  Category(1,"Fruit");
+            Category cat2 = new  Category(2,"Vegetables");
+            Category cat3 = new  Category(3,"Chips");
+            Category cat4 = new  Category(4,"Dairy");
+            db.categoryDAO().insertAll(cat1,cat2,cat3,cat4);
             //Inserting dummy items into inventory
             Inventory i1 = new Inventory();
             i1.setItem_id("127");
-            i1.setCat_id(44);
+            i1.setCat_id(1);
             i1.setItemName("Mango");
             i1.setStock(4);
             i1.setPrice(43.4);
@@ -44,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
             Inventory i2 = new Inventory();
             i2.setItem_id("126");
-            i2.setCat_id(44);
+            i2.setCat_id(2);
             i2.setItemName("Avacado");
             i2.setStock(12);
             i2.setPrice(158.3);
             //72527273070
             Inventory i3 = new Inventory();
             i3.setItem_id("72527273070");
-            i3.setCat_id(41);
+            i3.setCat_id(3);
             i3.setItemName("Lays Chips");
             i3.setStock(123);
             i3.setPrice(10);
@@ -100,19 +112,28 @@ public class MainActivity extends AppCompatActivity {
         }
         try{
             int eID = Integer.parseInt(empID.getText().toString());
+            String password = empPass.getText().toString();
             Employee emp = db.employeeDAO().getEmployee(eID);
-            Toast.makeText(this, "Welcome "+emp.getEmpName(),Toast.LENGTH_LONG).show();
-            String ename = emp.getEmpName();
-            Intent i = new Intent(this, LoggedInActivity.class);
+            if(Objects.equals(emp.getPassword(), password))
+            {
+                Toast.makeText(this, "Welcome "+emp.getEmpName(),Toast.LENGTH_SHORT).show();
+                //String ename = emp.getEmpName();
+                Intent i = new Intent(this, LoggedInActivity.class);
 
-            //Intent i = new Intent(this, AddItemsActivity.class);
-            //i.putExtra("name", ename);
-            startActivity(i);
+                //Intent i = new Intent(this, AddItemsActivity.class);
+                //i.putExtra("name", ename);
+                startActivity(i);
+            }
+            else
+            {
+                throw new Exception();
+            }
+
 
             //TODO: Launch the checkout Screen here
         }catch (Exception e){
             e.printStackTrace();
-            Toast.makeText(this, "Unable to login. Please check your ID!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Unable to login. Please check your ID! and password",Toast.LENGTH_SHORT).show();
         }
     }
 }

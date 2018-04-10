@@ -9,15 +9,26 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 /**
  * Created by pavan on 31/3/18.
  */
-@Entity
+@Entity(foreignKeys = {
+        @ForeignKey(entity = Employee.class,
+                parentColumns = "e_id",
+                childColumns = "e_id",
+                onUpdate=CASCADE,
+                onDelete = CASCADE),
+        @ForeignKey(entity = Customer.class,
+                parentColumns = "c_id",
+                childColumns = "c_id",
+                onUpdate=CASCADE,
+                onDelete = CASCADE)
+})
 public class Invoice {
     @PrimaryKey
     private int invoice_id;
 
-    @ForeignKey(entity = Customer.class, parentColumns = "c_id",childColumns = "c_id",onUpdate = CASCADE,onDelete = CASCADE)
+    @ColumnInfo(name="c_id")
     private int c_id;
 
-    @ForeignKey(entity = Employee.class, parentColumns = "e_id",childColumns = "e_id",onUpdate = CASCADE,onDelete = CASCADE)
+    @ColumnInfo(name="e_id")
     private int e_id;
 
     @ColumnInfo(name = "purchase_date")
@@ -25,6 +36,7 @@ public class Invoice {
 
     @ColumnInfo(name = "tot_cost")
     private double totCost;
+
 
 
     public Invoice() {}
@@ -36,6 +48,7 @@ public class Invoice {
         this.purchaseDate = purchaseDate;
         this.totCost = totCost;
     }
+
 
     public double getTotCost() {
         return totCost;

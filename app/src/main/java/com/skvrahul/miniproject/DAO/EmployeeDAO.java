@@ -35,6 +35,9 @@ public interface EmployeeDAO {
     @Query("select count(*) from employee")
     int getEmployeeCount();
 
+    @Query("select password from employee where e_id=:eid")
+    String getPassword(int eid);
+
 
 
 
