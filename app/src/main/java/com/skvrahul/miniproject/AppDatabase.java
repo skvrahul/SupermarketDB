@@ -30,6 +30,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CategoryDAO categoryDAO();
 
+    public abstract InvoiceDAO invoiceDAO();
+
     public boolean execQuery(String query) {
         SupportSQLiteDatabase sqliteDB = this.getOpenHelper().getWritableDatabase();
         try {

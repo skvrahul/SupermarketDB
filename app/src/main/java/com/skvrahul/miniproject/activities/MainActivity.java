@@ -2,6 +2,7 @@ package com.skvrahul.miniproject.activities;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private EditText empID;
     private EditText empPass;
+    SharedPreferences.Editor editor;
     AppDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         empPass.setText("admin");
         addDummyData();
         addTrigger();
+
+        //Getting SharedPref
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        editor = pref.edit();
+
     }
     public void addDummyData(){
         if(db==null){
@@ -119,18 +126,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Welcome "+emp.getEmpName(),Toast.LENGTH_SHORT).show();
                 //String ename = emp.getEmpName();
                 Intent i = new Intent(this, LoggedInActivity.class);
-
-                //Intent i = new Intent(this, AddItemsActivity.class);
-                //i.putExtra("name", ename);
+                editor.putInt("empID", eID);
+                editor.commit();
                 startActivity(i);
             }
             else
             {
                 throw new Exception();
             }
-
-
-            //TODO: Launch the checkout Screen here
         }catch (Exception e){
             e.printStackTrace();
             Toast.makeText(this, "Unable to login. Please check your ID! and password",Toast.LENGTH_SHORT).show();

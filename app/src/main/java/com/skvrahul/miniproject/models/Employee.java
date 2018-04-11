@@ -2,6 +2,7 @@ package com.skvrahul.miniproject.models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -33,23 +34,27 @@ public class Employee implements Serializable {
 
     }
 
+    @Ignore
     public Employee(String name) {
 
         this.empName = name;
     }
 
+    @Ignore
     public Employee(String name, int emp_id) {
         this.empName = name;
         this.e_id = emp_id;
 
     }
 
+    @Ignore
     public Employee(String empName,int e_id,String phoneNum) {
         this.empName = empName;
         this.e_id = e_id;
         this.phoneNum = phoneNum;
     }
 
+    @Ignore
     public Employee(String empName, int e_id, String phoneNum, double salary){
         this.empName = empName;
         this.e_id = e_id;

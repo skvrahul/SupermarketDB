@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.ForeignKey;
+import android.support.annotation.NonNull;
+
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 
@@ -26,17 +28,20 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         })
 
 public class Contains {
+    @NonNull
     @ColumnInfo(name="invoice_id")
     private int invoice_id;
+
+    @NonNull
     @ColumnInfo(name="item_id")
-    private int item_id;
+    private String item_id;
 
     @ColumnInfo(name="quantity")
     private int quantity;
 
     public Contains() {}
 
-    public Contains(int invoice_id,int item_id, int quantity)
+    public Contains(int invoice_id,String item_id, int quantity)
     {
         this.invoice_id = invoice_id;
         this.item_id = item_id;
@@ -51,7 +56,7 @@ public class Contains {
         return invoice_id;
     }
 
-    public int getItem_id() {
+    public String getItem_id() {
         return item_id;
     }
 
@@ -59,7 +64,7 @@ public class Contains {
         return quantity;
     }
 
-    public void setItem_id(int item_id) {
+    public void setItem_id(String item_id) {
         this.item_id = item_id;
     }
 
