@@ -32,12 +32,18 @@ public class RemoveItemActivity extends AppCompatActivity {
                     return;
                 }
                 try {
+                    Inventory i = db.inventoryDAO().getInventory(iId.getText().toString()).get(0);
+                    if(i==null)
+                    {
+                        throw new Exception();
+                    }
+
                     db.inventoryDAO().delItem(iId.getText().toString());
 
-                    Toast.makeText(getApplicationContext(), "Item " + iId.getText().toString() + "has been successfully deleted", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Item " + iId.getText().toString() + " has been successfully deleted", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Unable to delete Item!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Unable to delete Item!!", Toast.LENGTH_SHORT).show();
                 }
 
 

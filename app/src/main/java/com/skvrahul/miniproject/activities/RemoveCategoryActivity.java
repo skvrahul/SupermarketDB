@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.skvrahul.miniproject.AppDatabase;
 import com.skvrahul.miniproject.R;
+import com.skvrahul.miniproject.models.Category;
 
 public class RemoveCategoryActivity extends AppCompatActivity {
     AppDatabase db;
@@ -31,9 +32,14 @@ public class RemoveCategoryActivity extends AppCompatActivity {
                     return;
                 }
                 try {
+                    Category cat = db.categoryDAO().getCategory(Integer.parseInt(catId.getText().toString()));
+                    if(cat ==null)
+                    {
+                        throw new Exception();
+                    }
                     db.categoryDAO().delCategory(Integer.parseInt(catId.getText().toString()));
 
-                    Toast.makeText(getApplicationContext(), "Category " + catId.getText().toString() + "has been successfully deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Category " + catId.getText().toString() + " has been successfully deleted", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Unable to delete Category!!", Toast.LENGTH_SHORT).show();

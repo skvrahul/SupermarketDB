@@ -3,6 +3,7 @@ package com.skvrahul.miniproject.activities;
 import android.arch.persistence.room.Room;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import com.skvrahul.miniproject.AppDatabase;
 import com.skvrahul.miniproject.R;
 import com.skvrahul.miniproject.models.*;
+
+import java.util.Objects;
 
 public class AddEmployeeActivity extends AppCompatActivity {
     AppDatabase db;
@@ -40,7 +43,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
         addEmployeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (eId == null || db == null) {
+                if (eId == null || db == null || Objects.equals(password.getText().toString(), "") || Objects.equals(phoneNumber.getText().toString(), "")||Objects.equals(DateOfEmployment.getText().toString(), "")) {
+                    Toast.makeText(getApplicationContext(), "Incomplete Information!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
@@ -51,10 +55,10 @@ public class AddEmployeeActivity extends AppCompatActivity {
                     e.setStartDate(DateOfEmployment.getText().toString());
                     e.setPassword(password.getText().toString());
                     db.employeeDAO().insert(e);
-                    Toast.makeText(getApplicationContext(), "Employee " + name.getText().toString() + "has been successfully added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Employee " + name.getText().toString() + " has been successfully added", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Unable to add employee!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Unable to add employee!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

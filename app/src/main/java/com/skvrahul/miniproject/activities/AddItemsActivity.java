@@ -97,9 +97,9 @@ public class AddItemsActivity extends AppCompatActivity {
                 boolean inStock = checkAvailable(ci.getQty()+1,productID);
                 if(inStock){
                     ci.incrementQty();
-                    Toast.makeText(this, "Qty of "+ci.getItem().getItemName()+" increased by one...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Qty of "+ci.getItem().getItemName()+" increased by one...",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(this, "Sorry more units are not available",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Sorry more units are not available",Toast.LENGTH_SHORT).show();
                 }
                 adapter.notifyDataSetChanged();
                 return;
@@ -115,10 +115,10 @@ public class AddItemsActivity extends AppCompatActivity {
                 cartItems.add(new CartItem(item));
                 adapter.notifyDataSetChanged();
             } else {
-                Toast.makeText(this, "Sorry this product is currently not in stock", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Sorry this product is currently not in stock", Toast.LENGTH_SHORT).show();
             }
         }catch (Exception e){
-            Toast.makeText(this, "Please check your product id!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please check your product id!", Toast.LENGTH_SHORT).show();
         }
     }
     public void submitClicked(View view){

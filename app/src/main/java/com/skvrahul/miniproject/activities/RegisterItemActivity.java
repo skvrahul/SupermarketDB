@@ -36,15 +36,20 @@ public class RegisterItemActivity extends AppCompatActivity {
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(itemId==null)
+                {
+                    return;
+                }
                 try {
+
 
                     Inventory i = new Inventory( itemId.getText().toString(),itemName.getText().toString(),Double.parseDouble(itemCost.getText().toString()),Integer.parseInt(itemQuantity.getText().toString()),Integer.parseInt(itemCat.getText().toString()));
 
                     db.inventoryDAO().insert(i);
-                    Toast.makeText(getApplicationContext(), "item " + itemName.getText().toString() + "has been successfully added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "item " + itemName.getText().toString() + " has been successfully added", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Unable to add item!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Unable to add item!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

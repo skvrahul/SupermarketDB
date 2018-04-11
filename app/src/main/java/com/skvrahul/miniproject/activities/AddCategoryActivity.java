@@ -40,7 +40,7 @@ public class AddCategoryActivity extends AppCompatActivity {
 
                     Category cat = new Category(Integer.parseInt(catId.getText().toString()), catName.getText().toString());
                     db.categoryDAO().insert(cat);
-                    Toast.makeText(getApplicationContext(), "Category " + catName.getText().toString() + "has been successfully added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Category " + catName.getText().toString() + " has been successfully added", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Unable to add Category!!", Toast.LENGTH_SHORT).show();

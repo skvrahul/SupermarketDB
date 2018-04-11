@@ -50,10 +50,10 @@ public class AddCustomerActivity extends AppCompatActivity {
                     Customer c = new Customer(name.getText().toString(), Integer.parseInt(cId.getText().toString()));
                     c.setPhoneNum(phoneNumber.getText().toString());
                     db.customerDAO().insert(c);
-                    Toast.makeText(getApplicationContext(), "Customer" + name.getText().toString() + "has been successfully added", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Customer" + name.getText().toString() + " has been successfully added", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Unable to add Customer!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Unable to add Customer!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
