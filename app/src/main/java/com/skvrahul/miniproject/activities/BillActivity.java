@@ -3,6 +3,7 @@ package com.skvrahul.miniproject.activities;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.skvrahul.miniproject.AppDatabase;
 import com.skvrahul.miniproject.DAO.InvoiceDAO;
 import com.skvrahul.miniproject.R;
@@ -18,6 +25,8 @@ import com.skvrahul.miniproject.models.CartItem;
 import com.skvrahul.miniproject.models.Contains;
 import com.skvrahul.miniproject.models.Invoice;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +41,7 @@ public class BillActivity extends AppCompatActivity {
     int invoice_id;
     double totalBill;
     ArrayList<Contains> invoiceContains;
+    DecimalFormat decf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +68,10 @@ public class BillActivity extends AppCompatActivity {
             Contains c = new Contains(invoice_id, ci.getItem().getItem_id(),ci.getQty());
             invoiceContains.add(c);
         }
-        totalTV.setText("The total bill is Rs."+totalBill);
+        decf = new DecimalFormat("##.##");
+        decf.setRoundingMode(RoundingMode.DOWN);
+
+        totalTV.setText("The total bill is Rs."+decf.format(totalBill));
     }
     public void submitClicked(View view){
 
@@ -90,6 +103,7 @@ public class BillActivity extends AppCompatActivity {
                         db.containsDAO().insert(invoiceContains.get(i));
                     }
                     displayMessage("Succesfully finished Billing. You will receive a message shortly");
+                    sendBillSMS(c_id);
                     startActivity(i);
                 }catch (Exception e){
                     displayMessage("There was an error creating the invoice. Check your customer ID!");
@@ -102,5 +116,45 @@ public class BillActivity extends AppCompatActivity {
     }
     private void displayMessage(String msg){
         Toast.makeText(this, msg,Toast.LENGTH_LONG).show();
+    }
+    private void sendBillSMS(int c_id){
+        String number = db.customerDAO().getCustomer(c_id).get(0).getPhoneNum();
+        if(number.length()<3){
+            return;
+        }
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String message = generateBillString(c_id);
+        String BASE_URL ="http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&mobiles=9513391337&authkey=207961Af2g1m2sbRri5ac749b7&country=0";
+        Uri uri = Uri.parse(BASE_URL).buildUpon().appendQueryParameter("message", message).build();
+        String url = uri.toString();
+        Log.i(TAG, "Request = : "+url);
+
+
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Log.i(TAG, "Response is: "+ response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                displayMessage("Error Sending Message");
+            }
+        });
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+    private String generateBillString(int c_id){
+        String name = db.customerDAO().getCustomer(c_id).get(0).getCustName();
+        StringBuilder bill = new StringBuilder("Hi "+name+" your bill total is "+decf.format(totalBill)+"\n");
+        for(int i=0;i<cartItems.size();i++){
+            CartItem it = cartItems.get(i);
+            bill = bill.append(" - "+it.getItem().getItemName()+" Rs."+it.getItem().getPrice()+""+" -  "+it.getQty()+" Units \n");
+        }
+        return bill.toString();
     }
 }

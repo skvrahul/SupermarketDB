@@ -27,7 +27,7 @@ dependencies {
     })
     // Room (use 1.1.0-beta1 for latest beta)
 
-
+    compile 'com.android.volley:volley:1.0.0'
     compile 'android.arch.persistence.room:runtime:1.0.0'
     compile 'com.android.support:appcompat-v7:27.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

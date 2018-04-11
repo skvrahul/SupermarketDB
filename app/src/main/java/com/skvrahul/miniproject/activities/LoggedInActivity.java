@@ -49,7 +49,6 @@ public class LoggedInActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
         employeeManagementButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
