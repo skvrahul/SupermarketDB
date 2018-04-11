@@ -52,7 +52,7 @@ public class ViewListOfItems extends AppCompatActivity {
         };
 
         //Setting the Adapter
-        adapter = new ItemAdapter(items);
+        adapter = new ItemAdapter(items, deleteClickListener);
         itemRV.setAdapter(adapter);
         itemRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         itemRV.setItemAnimator(new DefaultItemAnimator());

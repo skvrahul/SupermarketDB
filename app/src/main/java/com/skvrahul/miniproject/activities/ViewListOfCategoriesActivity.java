@@ -53,7 +53,7 @@ public class ViewListOfCategoriesActivity extends AppCompatActivity {
             }
         };
         //Setting the Adapter
-        adapter = new CategoryAdapter(categories);
+        adapter = new CategoryAdapter(categories, deleteClickListener);
         categoryRV.setAdapter(adapter);
         categoryRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         categoryRV.setItemAnimator(new DefaultItemAnimator());
