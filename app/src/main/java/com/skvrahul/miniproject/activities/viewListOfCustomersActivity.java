@@ -43,8 +43,19 @@ public class viewListOfCustomersActivity extends AppCompatActivity {
         final CustomerDAO cDAO = db.customerDAO();
         customers = (ArrayList<Customer>) cDAO.getAllCustomers();
         Log.i(TAG, "onCreate: "+customers.size());
+
+        CustomerAdapter.DeleteClickListener deleteClickListener = new CustomerAdapter.DeleteClickListener() {
+            @Override
+            public void onClick(Customer item) {
+                db.customerDAO().delCustomer(item.getC_id());
+                int i = customers.indexOf(item);
+                customers.remove(item);
+                adapter.notifyItemRemoved(i);
+            }
+        };
+
         //Setting the Adapter
-        adapter = new CustomerAdapter(customers);
+        adapter = new CustomerAdapter(customers, deleteClickListener);
         customerRV.setAdapter(adapter);
         customerRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         customerRV.setItemAnimator(new DefaultItemAnimator());

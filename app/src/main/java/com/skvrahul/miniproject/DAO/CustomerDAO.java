@@ -29,6 +29,7 @@ public interface CustomerDAO {
     List<Customer> getCustomer(int cid);
 
     @Query("delete from customer where c_id=:cid")
-    void delEmployee(int cid);
+    void delCustomer(int cid);
+
 
 }

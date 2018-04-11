@@ -42,8 +42,17 @@ public class viewListOfEmployees extends AppCompatActivity {
         final EmployeeDAO eDAO = db.employeeDAO();
         employees = (ArrayList<Employee>) eDAO.getAllEmployees();
 
+        EmployeeAdapter.DeleteClickListener deleteClickListener = new EmployeeAdapter.DeleteClickListener() {
+            @Override
+            public void onClick(Employee item) {
+                db.employeeDAO().delEmployee(item.getE_id());
+                int i = employees.indexOf(item);
+                employees.remove(item);
+                adapter.notifyItemRemoved(i);
+            }
+        };
         //Setting the Adapter
-        adapter = new EmployeeAdapter(employees);
+        adapter = new EmployeeAdapter(employees, deleteClickListener);
         employeeRV.setAdapter(adapter);
         employeeRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         employeeRV.setItemAnimator(new DefaultItemAnimator());

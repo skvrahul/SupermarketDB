@@ -34,6 +34,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView id, name,phoneNumber;
+        public ImageView delete;
 
 
         public MyViewHolder(View view) {
@@ -41,7 +42,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
             id = view.findViewById(R.id.c_id_view);
             name = view.findViewById(R.id.c_name_view);
             phoneNumber = view.findViewById(R.id.c_phone_view);
-
+            delete = view.findViewById(R.id.c_del_iv);
 
         }
     }
@@ -53,7 +54,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
 
     public CustomerAdapter(List<Customer> Customers, DeleteClickListener deleteClickListener) {
         this.Customers = Customers;
-        //this.deleteClickListener = deleteClickListener;
+        this.deleteClickListener = deleteClickListener;
     }
 
     @Override
@@ -72,6 +73,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
         Log.i(TAG, "onBindViewHolder: Phone Number ="+e.getPhoneNum());
         holder.phoneNumber.setText(e.getPhoneNum());
         Log.d(TAG, "onBindViewHolder: called");
+        if(deleteClickListener!=null){
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteClickListener.onClick(e);
+                }
+            });
+        }
     }
 
 

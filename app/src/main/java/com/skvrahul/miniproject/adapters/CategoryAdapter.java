@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.skvrahul.miniproject.R;
 import com.skvrahul.miniproject.models.Category;
@@ -17,17 +18,20 @@ import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder>{
     private List<Category> categories;
-
+    private DeleteClickListener deleteClickListener;
+    public interface DeleteClickListener{
+        void onClick(Category item);
+    }
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name,catId;
-        //public ImageView delete, productImage;
+        public ImageView delete;
 
 
         public MyViewHolder(View view) {
             super(view);
             name = (TextView) view.findViewById(R.id.cat_name);
             catId = (TextView) view.findViewById(R.id.cat_id);
-            //delete = view.findViewById(R.id.cart_item_delete);
+            delete = view.findViewById(R.id.cat_delete_iv);
 
 
         }
@@ -35,6 +39,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     }
     public CategoryAdapter(List<Category> categories) {
         this.categories = categories;
+    }
+    public CategoryAdapter(List<Category> categories, DeleteClickListener deleteClickListener) {
+        this.categories = categories;
+        this.deleteClickListener= deleteClickListener;
     }
 
     @Override
@@ -50,6 +58,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         final Category cat = categories.get(position);
         holder.name.setText(cat.getCatName());
 
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(deleteClickListener!=null){
+                    deleteClickListener.onClick(cat);
+                }
+            }
+        });
         holder.catId.setText("ID: "+cat.getCat_id());
 
 

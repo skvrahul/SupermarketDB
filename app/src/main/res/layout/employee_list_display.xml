@@ -21,6 +21,16 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/e_del_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_delete" />
+
         <TextView
             android:id="@+id/e_id_view"
             android:layout_width="wrap_content"

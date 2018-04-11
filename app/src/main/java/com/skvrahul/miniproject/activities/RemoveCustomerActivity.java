@@ -43,7 +43,7 @@ public class RemoveCustomerActivity extends AppCompatActivity {
                     {
                         throw new Exception();
                     }
-                    db.customerDAO().delEmployee(Integer.parseInt(cId.getText().toString()));
+                    db.customerDAO().delCustomer(Integer.parseInt(cId.getText().toString()));
 
                     Toast.makeText(getApplicationContext(), "Customer " + cId.getText().toString() + " has been successfully deleted", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {

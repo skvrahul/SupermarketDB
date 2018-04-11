@@ -124,8 +124,8 @@ public class BillActivity extends AppCompatActivity {
         }
         RequestQueue queue = Volley.newRequestQueue(this);
         String message = generateBillString(c_id);
-        String BASE_URL ="http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&mobiles=9513391337&authkey=207961Af2g1m2sbRri5ac749b7&country=0";
-        Uri uri = Uri.parse(BASE_URL).buildUpon().appendQueryParameter("message", message).build();
+        String BASE_URL ="http://api.msg91.com/api/sendhttp.php?sender=MSGIND&route=4&authkey=207961Af2g1m2sbRri5ac749b7&country=0";
+        Uri uri = Uri.parse(BASE_URL).buildUpon().appendQueryParameter("message", message).appendQueryParameter("mobiles",number.toString()).build();
         String url = uri.toString();
         Log.i(TAG, "Request = : "+url);
 

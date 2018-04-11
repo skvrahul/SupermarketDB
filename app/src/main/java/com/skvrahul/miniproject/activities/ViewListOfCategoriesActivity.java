@@ -43,6 +43,15 @@ public class ViewListOfCategoriesActivity extends AppCompatActivity {
         final CategoryDAO catDAO = db.categoryDAO();
         categories = (ArrayList<Category>) catDAO.getAllCategories();
         Log.i(TAG, "onCreate: "+categories.size());
+        CategoryAdapter.DeleteClickListener deleteClickListener = new CategoryAdapter.DeleteClickListener() {
+            @Override
+            public void onClick(Category item) {
+                db.categoryDAO().delCategory(item.getCat_id());
+                int i = categories.indexOf(item);
+                categories.remove(item);
+                adapter.notifyItemRemoved(i);
+            }
+        };
         //Setting the Adapter
         adapter = new CategoryAdapter(categories);
         categoryRV.setAdapter(adapter);

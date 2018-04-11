@@ -30,7 +30,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView id, name,phoneNumber,startDate, salary;
-
+        public ImageView delete;
 
         public MyViewHolder(View view) {
             super(view);
@@ -38,8 +38,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
             name = view.findViewById(R.id.e_name_view);
             phoneNumber = view.findViewById(R.id.e_phone_view);
             salary = view.findViewById(R.id.e_sal_view);
-            //startDate = view.findViewById(R.id.e_da)
-            //delete = view.findViewById(R.id.cart_item_delete);
+            startDate = view.findViewById(R.id.e_date_txt);
+            delete = view.findViewById(R.id.e_del_iv);
 
         }
     }
@@ -51,7 +51,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
 
     public EmployeeAdapter(List<Employee> Employees, DeleteClickListener deleteClickListener) {
         this.Employees = Employees;
-        //this.deleteClickListener = deleteClickListener;
+        this.deleteClickListener = deleteClickListener;
     }
 
     @Override
@@ -69,7 +69,16 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
         holder.id.setText(e.getE_id()+"");
         holder.phoneNumber.setText(e.getPhoneNum());
         holder.salary.setText(e.getSalary()+"");
-        Log.d(TAG, "onBindViewHolder: called");
+        if(deleteClickListener!=null){
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteClickListener.onClick(e);
+                }
+            });
+        }
+        if(e.getStartDate()!=null)
+            holder.startDate.setText(e.getStartDate()+"");
     }
 
 

@@ -41,6 +41,15 @@ public class ViewListOfItems extends AppCompatActivity {
                 AppDatabase.class, "my-db").allowMainThreadQueries().build();
         final InventoryDAO iDAO = db.inventoryDAO();
         items = (ArrayList<Inventory>) iDAO.getAllInventories();
+        ItemAdapter.DeleteClickListener deleteClickListener = new ItemAdapter.DeleteClickListener() {
+            @Override
+            public void onClick(Inventory item) {
+                db.inventoryDAO().delItem(item.getItem_id());
+                int i = items.indexOf(item);
+                items.remove(item);
+                adapter.notifyItemRemoved(i);
+            }
+        };
 
         //Setting the Adapter
         adapter = new ItemAdapter(items);

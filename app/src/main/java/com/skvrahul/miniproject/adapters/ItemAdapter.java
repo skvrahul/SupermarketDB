@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.skvrahul.miniproject.R;
@@ -22,6 +23,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, price, units,itemId;
+        public ImageView delete;
 
 
 
@@ -31,9 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
             units = (TextView) view.findViewById(R.id.item_units);
             price = (TextView) view.findViewById(R.id.item_price);
             itemId = view.findViewById(R.id.cat_id);
-
-
-
+            delete = view.findViewById(R.id.item_del_iv);
         }
     }
 
@@ -62,7 +62,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         holder.units.setText(item.getStock()+" Units");
         holder.price.setText("Rs. "+item.getPrice()+"");
         holder.itemId.setText("ID: "+item.getItem_id());
-        /*
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +70,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
                 }
             }
         });
-        */
 
     }
 
